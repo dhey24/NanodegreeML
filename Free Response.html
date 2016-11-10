@@ -8,53 +8,127 @@
   <meta name="CocoaVersion" content="1404.13">
   <style type="text/css">
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 15.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 15.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 17.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 14.0px}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Menlo}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 15.0px Arial; color: #000000; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 15.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 17.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Arial; -webkit-text-stroke: #000000}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 14.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 11.0px Menlo}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 11.0px Menlo; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Menlo}
     span.s1 {font-kerning: none}
     span.s2 {font-kerning: none; background-color: #ffffff}
-    span.s3 {font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #000000; -webkit-text-stroke: 0px #000000}
-    span.s4 {font-variant-ligatures: no-common-ligatures}
+    span.s3 {font: 11.0px Menlo; font-kerning: none}
+    span.s4 {font-kerning: none; color: #000000; background-color: #ffffff}
+    span.s5 {font: 12.0px Arial; font-kerning: none; color: #000000; background-color: #ffffff; -webkit-text-stroke: 0px #000000}
+    span.s6 {font-variant-ligatures: no-common-ligatures}
+    span.s7 {font-kerning: none; color: #000000}
+    span.s8 {font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; -webkit-text-stroke: 0px #000000}
     span.Apple-tab-span {white-space:pre}
   </style>
 </head>
 <body>
 <p class="p1"><span class="s1"><b>Enron Submission Free-Response Questions</b></span></p>
-<p class="p1"><span class="s1">David Hey</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>1. </b>The goal of this project is to identify persons of interest (POIs) from Enron using financial and email related data. Machine Learning techniques will allow us to see which variables were significant in identifying POIs and the models created would allow us to process other individuals from Enron to see if they too would (or should) be a POI. In fact, it is possible that with the proper tweaking the models that are built could be applied to other firms to try and detect POIs in fraud cases.</span></p>
-<p class="p3"><span class="s1">The financial information in this case is quite important, because much of the fraud that was occurring was happening to try and drive up stock prices for the investors. Profit became more important than ethical approaches, and success often had a dollar value. One would think that those involved in the fraud would also be benefitting financially, or at least have a large financial stake in the possible outcome. The email information is especially interesting, because fraud often does not happen in a number of separate pockets, rather people generally conspire together. Figuring out the relationships between individuals and who may or may not be in the “inner circle” is key in figuring out who is a POI.</span></p>
-<p class="p3"><span class="s1">When looking at this data, there were two obvious outliers that needed to be excluded from the dataset from the beginning: “TOTAL” and “THE TRAVEL AGENCY IN THE PARK”. Obviously neither of these are actual people, and their values could disrupt our models when they are being built. TOTAL has values orders of magnitude greater than the rest of the dataset, while TRAVEL AGNECY has all NaN values, rendering it useless.</span></p>
-<p class="p4"><span class="s2">Once these values have been excluded, there are 144 people left in the dataset and 21 features that could be associated with them (before any transformations, feature additions, or feature reductions). Of the 144 people, only 18 are POIs (12.5% of the total data set). In addition, not a single one of the features has a value<span class="Apple-tab-span">	</span>for every person in the dataset, with the best completeness of any given feature being 86.8% (</span><span class="s3">total_stock_value</span><span class="s2">) and the worst completeness being 2.1% (</span><span class="s3">loan_advances</span><span class="s2">). The POI/non-POI allocation will be important to take into account during validation , and feature completeness will definitely factor into the feature selection process.</span></p>
-<p class="p5"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>2. </b>The features I used for my model were: 'salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi', 'from_poi_to_this_person', and ’from_this_person_to_poi’. I chose these features because they cover two main areas that I feel were important factors in the fraud that occurred: strong financial incentive to drive up stock prices, and strong connections to those in the “inner circle”. I did not perform any feature scaling, since I used a decision tree and I wanted to output of the tree to be as interpretable by a human as possible. (Honestly, I was also having some trouble performing PCA using the pipeline).</span></p>
-<p class="p3"><span class="s1">I created 3 features of my own, which I thought would be even more direct indicators someone was a poi: “pct_stock_value_excercised”, “to_and_from_poi”, and “pct_to_and_from_poi”. The percent of stock value exercised seemed like it could be an indicator, since the collapse of the company happened so quickly, and those on the inside who knew what was going on would have tried to cash out before the their massive stockpile was worthless. The other two features try and summarize some of the email features in a way that emphasizes the volume and percentage of communication a given person had with POIs. The idea being that a high volume, or high proportion of communication with a POI could be indicative that you too are a POI.</span></p>
-<p class="p3"><span class="s1">The feature importances from my decision tree are as follows:</span></p>
-<p class="p6"><span class="s4">salary 0.207777503966</span></p>
-<p class="p6"><span class="s4">exercised_stock_options 0.0045251257246</span></p>
-<p class="p6"><span class="s4">total_stock_value 0.156431460589</span></p>
-<p class="p6"><span class="s4">pct_stock_value_excercised 0.0869959362301</span></p>
-<p class="p6"><span class="s4">shared_receipt_with_poi 0.34820116361</span></p>
-<p class="p6"><span class="s4">from_poi_to_this_person 0.114636518356</span></p>
-<p class="p6"><span class="s4">from_this_person_to_poi 0.0814322915238</span></p>
-<p class="p3"><span class="s1">When you look at the actual Decision Tree that was created by the algorithm (EnronDecisionTree.pdf) it becomes quite clear why certain features are more important than others. Features used closer to the top of the tree have a higher importance, since they are making the big splits in the data, rather than combing through previously split data to try and find the specific details that separate the categories. This is why salary and shared_receipt_with_poi have high importances, but pct_stock_value_exercised and from_this_person_to_poi have lower importances.</span></p>
-<p class="p5"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>3. </b>I ended up choosing the Decision Tree Classifier, after trying with Naive Bayes, SVMs, and Gradient Boosting Classifiers as well. First and foremost, I was able to get the best precision and recall out of the decision tree. Even when using grid search to tune the parameters of the SVM, I was not able to get precision or recall above 0 for the features I had selected. Similarly, when I tried using grid search to tune the parameters for gradient boosting classification, the best I could get was a precision of .28 and a recall of .21.<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s1">One of the other reasons I chose a Decision Tree Classifier, is that it provides an output that is easily interpreted by a human, and can be explained in plain english easily. It is simple to show someone how a new value you want to predict travels through the decision tree until it finally reaches a leaf where it is given a class.<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s1">Using GraphViz I was able to create a visualization of the decision tree output, which helped me make sense of what I was creating, tune parameters, and even iterate through various feature selection scenarios (see EnronDecisionTree.pdf to see what the final model looks like).</span></p>
-<p class="p5"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>4.</b> Most algorithms have various parameters, which allow you to tune the algorithm. Much like an amplifier for an electric guitar has knobs (volume, gain, etc.) that dramatically effect the sounds that are emitted, these parameters can have a large effect on output of the algorithm. Often times the parameters are used to control the complexity of the model, to combat overfitting to the training data.</span></p>
-<p class="p3"><span class="s1">In my case, I did adjust the “max_depth” parameter of the decision tree, because without it I was getting a decision tree that was overly complex and was overfitting to the training data. Without adjusting the max_depth, my tree was going 8 layers deep, so I set the max_depth at 7. This actually improved the precision and recall of the algorithm a bit. After seeing this improvement, I tried a max_depth of 6, which dramatically decreased the accuracy, precision, and recall, leading me to stick with a max_depth of 7.</span></p>
-<p class="p3"><span class="s1">For a few of the algorithms I did not end up using, I used grid search to walk through a few different parameter combinations and remove some of the manual trial and error. However, as I previously mentioned these models still did not meet the .3 precision and recall cutoff.</span></p>
-<p class="p5"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>5.</b> Validation is how you test how well your algorithm generalizes. Generally, this entails holding a portion of the data out as testing data, and building the model on the remaining training data. The testing data is not used to train/fit the model, and is used to evaluate the performance with various evaluation metrics. This combats overfitting, and gives a sense of how the model will perform “in the wild”.<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s1">I used cross validation to hold out 30% of my data (sampled randomly) as testing data, using the rest to create the model. The random sampling is important, because if I sampled a continuous chunk of data that contained only POIs (or non POIs) almost none of the features chosen would matter, because no matter what it does, the model would think there is only one answer (POI).</span></p>
-<p class="p3"><span class="s1">Without validation we run the risk of creating a model that is overfit and tries to capture every piece of noise in the data. A classic example of overfitting in real life would be if every time a child hit a ball somewhere in the outfield during a t-ball game, the whole team went to that spot for the next hitter because that is where they think the ball is going to go. This is a terrible strategy for fielding and would lead to lots of runs, but makes sense if the only sample they care about is the last hit.</span></p>
-<p class="p5"><span class="s1"></span><br></p>
-<p class="p3"><span class="s1"><b>6. </b>The accuracy of my model was 82.4%, and the precision of my model was 37.2%. Of all the evaluation metrics accuracy is the easiest to understand, but can also be the most misleading. Accuracy simply takes the number of correct predictions and divides that by the total number of predictions. My accuracy of 82.4% seems great, until you realize that only 12.5% of the people in my dataset were POIs, and if I had just guessed that no one is a POI my accuracy would have been 87.5%. This is why looking at precision and recall is important.</span></p>
-<p class="p3"><span class="s1">A precision score of 37.2% means that if the model gives the prediction that someone is a POI, there is a 37% chance that person is actually a POI. Put differently, if my model was a cancer test, and you tested positive for cancer based upon my test, there is a 37% chance you actually have cancer. Precision is calculated by taking the number of true positives and dividing it by the number of true positives plus false positives.</span></p>
-<p class="p3"><span class="s1">Unfortunately, this precision score of 37% is not amazing and if I were using this model in real life it would be helpful for prioritizing people who perhaps should be investigated in further detail, but definitely could not be taken as the end all be all for sending someone to jail.</span></p>
+<p class="p1"><span class="s1"><i>David Hey</i></span></p>
+<p class="p2"><span class="s1"><br>
+</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p4"><span class="s1"><b>1. </b>The goal of this project is to identify persons of interest (POIs) from Enron using financial and email related data. Machine Learning techniques will allow us to see which variables were significant in identifying POIs and the models created would allow us to process other individuals from Enron to see if they too would (or should) be a POI. In fact, it is possible that with the proper tweaking the models that are built could be applied to other firms to try and detect POIs in fraud cases.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">The financial information in this case is quite important, because much of the fraud that was occurring was happening to try and drive up stock prices for the investors. Profit became more important than ethical approaches, and success often had a dollar value. One would think that those involved in the fraud would also be benefitting financially, or at least have a large financial stake in the possible outcome. The email information is especially interesting, because fraud often does not happen in a number of separate pockets, rather people generally conspire together. Figuring out the relationships between individuals and who may or may not be in the “inner circle” is key in figuring out who is a POI.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s2">When looking at this data, there were two obvious outliers that needed to be excluded from the dataset from the beginning: “TOTAL” and “THE TRAVEL AGENCY IN THE PARK”. Obviously neither of these are actual people, and their values could disrupt our models when they are being built. TOTAL has values orders of magnitude greater than the rest of the dataset, while TRAVEL AGNECY has all NaN values, rendering it useless. In addition, when the data is inspected even more carefully there are two more individuals that should be considered outliers due to data quality issues. “</span><span class="s3">BELFER ROBERT</span><span class="s2">” and “</span><span class="s3">BHATNAGAR SANJAY</span><span class="s2">” should be excluded because their “</span><span class="s3">total_payments</span><span class="s2">” and “</span><span class="s3">total_stock_value</span><span class="s2">” fields do not accurately represent the sum of the underlying features that they represent. Total Payments should be equal to the sum of: ‘bonus', 'deferral_payments', 'deferred_income', 'director_fees', 'expenses', 'loan_advances','long_term_incentive', 'other', and ’salary’, while total stock value should equal the sum of: ‘exercised_stock_options','restricted_stock' and ’restricted_stock_deferred’.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s2">Once these values have been excluded, there are 144 people left in the dataset and 21 features that could be associated with them (before any transformations, feature additions, or feature reductions). Of the 144 people, only 18 are POIs (12.5% of the total data set). In addition, not a single one of the features has a value<span class="Apple-tab-span">	</span>for every person in the dataset, and to be even more specific I looked at the completeness of each feature (completeness = Proportion of non-NaN records = Number of non “NaN” values / Total number of Values). The best completeness of any given feature was 86.8% (</span><span class="s3">total_stock_value</span><span class="s2">) and the worst completeness was 2.1% (</span><span class="s3">loan_advances</span><span class="s2">). The POI/non-POI allocation will be important to take into account during validation , and feature completeness will definitely factor into the feature selection process.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p6"><span class="s4"><b>2. </b></span><span class="s1">I created 3 features of my own, which I thought would be even more direct indicators someone was a poi: “pct_stock_value_excercised”, “to_and_from_poi”, and “pct_to_and_from_poi”. The percent of stock value exercised seemed like it could be an indicator, since the collapse of the company happened so quickly, and those on the inside who knew what was going on would have tried to cash out before the their massive stockpile was worthless. The other two features try and summarize some of the email features in a way that emphasizes the volume and percentage of communication a given person had with POIs. The idea being that a high volume, or high proportion of communication with a POI could be indicative that you too are a POI.</span></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p6"><span class="s1">I did not perform any feature scaling, since I used a decision tree and I wanted to output of the tree to be as interpretable by a human as possible. In addition, feature scaling is not necessary for decision trees in general.</span></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p8"><span class="s5">The features I used for my model were: </span><span class="s6">['poi', 'salary', 'exercised_stock_options', 'pct_stock_value_excercised', 'shared_receipt_with_poi']</span></p>
+<p class="p4"><span class="s1">I used a two step process to select these features:</span></p>
+<p class="p4"><span class="s1"><i>Step 1: Select come combinations of features that could be significant based upon what I already know about the Enron scandal.<span class="Apple-converted-space"> </span></i></span></p>
+<p class="p4"><span class="s1">I chose these features because they cover two main areas that I feel were important factors in the fraud that occurred: strong financial incentive to drive up stock prices, and strong connections to those in the “inner circle”.</span></p>
+<p class="p4"><span class="s1">I originally tried 7 combinations of features which were as follows:</span></p>
+<p class="p9"><span class="s1">features_list_list = [['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi','salary', 'exercised_stock_options', 'total_stock_value', 'shared_receipt_with_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi','salary', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi', 'from_poi_to_this_person','from_this_person_to_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi','to_and_from_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi','to_and_from_poi'],</span></p>
+<p class="p9"><span class="s1"><span class="Apple-tab-span">	</span>['poi', 'total_stock_value', 'total_payments']]</span></p>
+<p class="p4"><span class="s1"><i>Step 2: Adjust the feature lists based upon how the models perform and which features had the highest importance scores</i></span></p>
+<p class="p5"><span class="s1">After trying all these combinations of features I noticed that on one of my best performing models, there was a feature with 8% importance. The exact importances were as follows:</span></p>
+<p class="p10"><span class="s6">feature, importance score</span></p>
+<p class="p10"><span class="s6">['shared_receipt_with_poi, 0.294440877927',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'exercised_stock_options, 0.259578527713',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'salary, 0.231654275904',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'pct_stock_value_excercised, 0.125567842684',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'total_stock_value, 0.0887584757716']</span></p>
+<p class="p6"><span class="s7">After removing </span><span class="s8">total_stock_value</span><span class="s7">, the feature list was: </span><span class="s1">['poi','salary', 'exercised_stock_options', 'pct_stock_value_excercised', 'shared_receipt_with_poi’].</span></p>
+<p class="p6"><span class="s1">I then re-ran the decision tree with this reduced feature set, and found that it improved the quality of my model (precision and recall were both improved, which I will discuss in more detail later).</span></p>
+<p class="p4"><span class="s1">The feature importances from my final decision tree were as follows:</span></p>
+<p class="p10"><span class="s6">feature, importance score</span></p>
+<p class="p10"><span class="s6">['exercised_stock_options, 0.345621923937',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'shared_receipt_with_poi, 0.324409716455',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'salary, 0.237856903271',</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space"> </span>'pct_stock_value_excercised, 0.0921114563362']</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s2">When you look at the actual Decision Tree that was created by the algorithm (EnronDecisionTree.pdf) it becomes quite clear why certain features are more important than others. Features used closer to the top of the tree have a higher importance, since they are making the big splits in the data, rather than combing through previously split data to try and find the specific details that separate the categories. In addition, features that are used often and make definitive splits in the data have a higher importance. This is why salary and exercised_stock_value and salary have high importances, but pct_stock_value_exercised has a lower importance. More generally, when a variable makes a decisive split that increases the purity of a classifier it becomes more important. </span><span class="s7">For example, if I had 4 POIs and 4 non-POIs in a node before a split but two separate leaves after the split containing only POIs and non-POIs respectively, the variable that allowed me to make that split would get higher importance.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p4"><span class="s1"><b>3. </b>I ended up choosing the Decision Tree Classifier, after trying with Naive Bayes, SVMs, and Gradient Boosting Classifiers as well. First and foremost, I was able to get the best precision and recall out of the decision tree. Even when using grid search to tune the parameters of the SVM, I was not able to get precision or recall above 0 for the features I had selected. Similarly, when I tried using grid search to tune the parameters for gradient boosting classification, the best I could get was a precision of .28 and a recall of .21.<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">One of the other reasons I chose a Decision Tree Classifier, is that it provides an output that is easily interpreted by a human, and can be explained in plain english easily. It is simple to show someone how a new value you want to predict travels through the decision tree until it finally reaches a leaf where it is given a class.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s1">Using GraphViz I was able to create a visualization of the decision tree output, which helped me make sense of what I was creating, tune parameters, and even iterate through various feature selection scenarios (see EnronDecisionTree.pdf to see what the final model looks like).</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1"><b>4.</b> Most algorithms have various parameters, which allow you to tune the algorithm. Much like an amplifier for an electric guitar has knobs (volume, gain, etc.) that dramatically effect the sounds that are emitted, these parameters can have a large effect on output of the algorithm. Often times the parameters are used to control the complexity of the model, to combat overfitting to the training data.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">In my case, I did adjust the “max_depth” parameter of the decision tree, because without it I was getting a decision tree that was overly complex and was overfitting to the training data. Without adjusting the max_depth, my tree was going 8 layers deep, so I set the max_depth at 7. This actually improved the precision and recall of the algorithm a bit. After seeing this improvement, I tried a max_depth of 6, which dramatically decreased the accuracy, precision, and recall, leading me to stick with a max_depth of 7.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">For a few of the algorithms I did not end up using, I used grid search to walk through a few different parameter combinations and remove some of the manual trial and error. However, as I previously mentioned these models still did not meet the .3 precision and recall cutoff.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1"><b>5.</b> Validation is how you test how well your algorithm generalizes. Generally, this entails holding a portion of the data out as testing data, and building the model on the remaining training data. The testing data is not used to train/fit the model, and is used to evaluate the performance with various evaluation metrics. This combats overfitting, and gives a sense of how the model will perform “in the wild”.<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">I used cross validation to hold out 30% of my data (sampled randomly) as testing data, using the rest to create the model. The random sampling is important, because if I sampled a continuous chunk of data that contained only POIs (or non POIs) almost none of the features chosen would matter, because no matter what it does, the model would think there is only one answer (POI).</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">Without validation we run the risk of creating a model that is overfit and tries to capture every piece of noise in the data. A classic example of overfitting in real life would be if every time a child hit a ball somewhere in the outfield during a t-ball game, the whole team went to that spot for the next hitter because that is where they think the ball is going to go. This is a terrible strategy for fielding and would lead to lots of runs, but makes sense if the only sample they care about is the last hit.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p5"><span class="s2"><b>6. </b>The accuracy of my model was 82.3%, the precision was 42%, and the recall was 39%. Of all the evaluation metrics accuracy is the easiest to understand, but can also be the most misleading. Accuracy simply takes the number of correct predictions and divides that by the total number of predictions. My accuracy of </span><span class="s1">82.3</span><span class="s2">% seems great at first glance, until you realize that only 12.5% of the people in my dataset were POIs, and if I had just guessed that no one is a POI my accuracy would have been 87.5%. This is why looking at precision and recall is important.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">A precision score of 42% means that if the model gives the prediction that someone is a POI, there is a 42% chance that person is actually a POI. Put differently, if my model was a cancer test, and you tested positive for cancer based upon my test, there is a 42% chance you actually have cancer. Precision is calculated by taking the number of true positives and dividing it by the number of true positives plus false positives.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">A recall score of 39% means that if the actual answer is that someone is a POI, there is a 33% chance I correctly predict they actually are one. Essentially, recall tells us how complete the results are (the actual calculation being true positives / [true positives + false negatives]). A different example of recall would be if I am trying to build a system that identifies the ducks in the “Duck or Llama” app for me (free on the Apple App Store). If the model is fed 10 pictures (9 ducks and 1 llama), if it correctly identifies 3 ducks the model recall would also be 33% (since it identified 3 of the 9 actual ducks). To recap, recall is the ability of a model to find all the positive samples.</span></p>
+<p class="p5"><span class="s1"><br>
+</span></p>
+<p class="p4"><span class="s1">Unfortunately, a precision score of 42% and recall score of 33% is does not give me a lot of confidence in the model and if I were using this model in real life it would be helpful for prioritizing people who perhaps should be investigated in further detail, but definitely could not be taken as the end all be all for sending someone to jail.</span></p>
 </body>
 </html>

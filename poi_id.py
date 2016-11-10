@@ -22,6 +22,38 @@ with open("final_project_dataset.pkl", "r") as data_file:
 data_dict.pop("TOTAL")
 data_dict.pop('THE TRAVEL AGENCY IN THE PARK')
 
+#check total_payments and total_stock_values
+payment_features = ['bonus', 'deferral_payments', 'deferred_income', 'director_fees', 
+					'expenses', 'loan_advances','long_term_incentive', 'other', 'salary']
+stock_features = ['exercised_stock_options','restricted_stock','restricted_stock_deferred']
+outliers = []
+for key, val in data_dict.iteritems():
+	total_payments_calc = 0
+	total_stock_values_calc = 0
+	for k, v in val.iteritems():
+		if k in payment_features and v != "NaN":
+			total_payments_calc += v
+		elif k in stock_features and v!= "NaN":
+			total_stock_values_calc += v
+
+	if val['total_payments'] == "NaN":
+		total_payments = 0
+	else:
+		total_payments = val['total_payments']
+	if val['total_stock_value'] == "NaN":
+		total_stock = 0
+	else:
+		total_stock = val['total_stock_value']
+
+	if total_payments_calc != total_payments or total_stock_values_calc != total_stock:
+		outliers.append(key)
+
+for outlier in outliers:
+	pprint.pprint(data_dict[outlier])
+	data_dict.pop(outlier)
+	print(outlier), "Removed as outlier since payments or stock valeus do not add up!"
+
+
 ### Task 3: Create new feature(s)
 ### Store to my_dataset for easy export below.
 my_dataset = data_dict
@@ -205,9 +237,112 @@ features_list = ['poi','salary', 'exercised_stock_options', 'total_stock_value',
 
 # Example starting point. Try investigating other evaluation techniques!
 from sklearn.cross_validation import train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+
+#new evaluation technique using stratified shuffle split
+from sklearn.cross_validation import StratifiedShuffleSplit
+import numpy as np
+
+#list of feature lists to test for decision tree
+features_list_list = [['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi'],
+	['poi','salary', 'exercised_stock_options', 'total_stock_value', 'shared_receipt_with_poi'],
+	['poi','salary', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi'],
+	['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi', 'from_poi_to_this_person','from_this_person_to_poi'],
+	['poi','salary', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi','to_and_from_poi'],
+	['poi', 'exercised_stock_options', 'total_stock_value', 'pct_stock_value_excercised', 'shared_receipt_with_poi','to_and_from_poi'],
+	['poi', 'total_stock_value', 'total_payments'],
+	['poi','salary', 'exercised_stock_options', 'pct_stock_value_excercised', 'shared_receipt_with_poi']]
+
+best_list_score = 0
+for features_list in features_list_list:
+	print "\n New feature list for decision tree:", features_list
+	data = featureFormat(my_dataset, features_list, sort_keys = True)
+	labels, features = targetFeatureSplit(data)
+
+	#run a stratified shuffle split
+	sss = StratifiedShuffleSplit(labels, n_iter = 1000, random_state = 42)
+
+	#find best features
+	features_scores = {}
+	evaluation_metrics = {"accuracy" : [], "precision" : [], "recall" : []}
+
+	for i_train, i_test in sss:
+		features_train, features_test = [features[i] for i in i_train], [features[i] for i in i_test]
+		labels_train, labels_test = [labels[i] for i in i_train], [labels[i] for i in i_test]
+
+		#fit selector to training set
+		selector = tree.DecisionTreeClassifier(random_state=0, max_depth=7)
+		selector.fit(features_train, labels_train)
+
+		pred = selector.predict(features_test)
+
+		#evaluation metrics
+		acc = accuracy_score(pred, labels_test)
+		precision = precision_score(pred, labels_test)
+		recall = recall_score(pred, labels_test)
+		evaluation_metrics['accuracy'].append(acc)
+		evaluation_metrics['precision'].append(precision)
+		evaluation_metrics['recall'].append(recall)
+
+		#get scores for each feature
+		sel_features = features_list[1:]
+		sel_list = []
+		for i in range(len(sel_features)):
+			sel_list.append([sel_features[i], selector.feature_importances_[i]])
+
+		#fill features_scores dict
+		for feat, score in sel_list:
+			if feat not in features_scores:
+				features_scores[feat] = {"scores" : []}
+			features_scores[feat]['scores'].append(score)
+
+	#avg scores of each feature
+	features_scores_1 = [] 	#feature name, avg scores, avg pvals
+	for feat in features_scores:
+		features_scores_1.append((feat, np.mean(features_scores[feat]['scores'])))
+
+	#avg and print evaluation metrics
+	evaluation_metrics_avg = {}
+	for key, val in evaluation_metrics.iteritems():
+		print key, np.mean(val)
+		evaluation_metrics_avg[key] = np.mean(val)
+
+	#sort by scores and print
+	import operator
+
+	sorted_feature_scores = sorted(features_scores_1, key=operator.itemgetter(1), reverse=True)
+	sorted_feature_scores_str = ["{}, {}".format(x[0], x[1]) for x in sorted_feature_scores]
+	print "feature, importance score"
+	pprint.pprint(sorted_feature_scores_str)
+
+	#see how the model compares to the others (highest precision + recall)
+	if evaluation_metrics_avg['precision'] + evaluation_metrics_avg['recall'] > best_list_score:
+		best_list_score = evaluation_metrics_avg['precision'] + evaluation_metrics_avg['recall']
+		best_evaluation_metrics = evaluation_metrics_avg
+		best_sorted_feature_scores_str = sorted_feature_scores_str
+		best_features_list = features_list
+		print "***THIS IS THE NEW BEST MODEL***"
+
+#return values for the best model
+print "\n THE WINNER IS..."
+print "features_list :", best_features_list
+pprint.pprint(best_evaluation_metrics)
+print "feature, importance score"
+pprint.pprint(best_sorted_feature_scores_str)
+
+#change the features list to the one that performed the best so tester.py works correctly
+features_list = best_features_list
+feature_names = features_list[1:]
+
+#get an idea about what the tree looks like
+data = featureFormat(my_dataset, features_list, sort_keys = True)
+labels, features = targetFeatureSplit(data)
+
+print "\nBasic validation with test train split (For Tree PDF)"
 features_train, features_test, labels_train, labels_test = \
     train_test_split(features, labels, test_size=0.3, random_state=42)
 
+clf = tree.DecisionTreeClassifier(random_state=0, max_depth=7)
 clf.fit(features_train, labels_train)
 pred = clf.predict(features_test)
 
@@ -224,13 +359,6 @@ with open("EnronDecisionTree.dot", 'w') as f:
 	#	install graphviz via homebrew: brew install graphviz
 	#	convert to pdf in terminal: dot -Tpdf EnronDecisionTree.dot -o EnronDecisionTree.pdf
 
-from sklearn.metrics import accuracy_score, precision_score, recall_score
-acc = accuracy_score(pred, labels_test)
-precision = precision_score(pred, labels_test)
-recall = recall_score(pred, labels_test)
-print acc, "accuracy"
-print precision, "precision"
-print recall, "recall"
 
 ### Task 6: Dump your classifier, dataset, and features_list so anyone can
 ### check your results. You do not need to change anything below, but make sure
